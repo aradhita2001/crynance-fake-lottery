@@ -34,7 +34,7 @@ export default function Scratch() {
         </Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-          <ScratchCard width={cardWidth} height={Math.round(cardWidth * 0.55)} prize={`You won a ${prize}!`} onComplete={handleComplete} />
+          <ScratchCard width={cardWidth} height={Math.round(cardWidth * 0.55)} onComplete={handleComplete} />
         </Box>
 
         <Box sx={{ display: 'flex', justifyContent: 'flex-start', mt: 2 }}>
