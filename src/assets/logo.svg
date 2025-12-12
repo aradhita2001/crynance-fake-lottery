@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="40" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="40" rx="6" fill="#0f172a" />
+  <g transform="translate(8,6)">
+    <circle cx="14" cy="14" r="12" fill="#06b6d4" />
+    <text x="14" y="18" font-size="12" text-anchor="middle" fill="#062c3a" font-family="Arial" font-weight="700">CN</text>
+    <text x="36" y="22" font-size="14" fill="#ffffff" font-family="Arial" font-weight="700">Crynance</text>
+  </g>
+</svg>
