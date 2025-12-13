@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, TextField, Button, Grid, Paper, Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, FormHelperText, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Box, TextField, Button, Grid, Paper, Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, FormHelperText, Dialog, DialogTitle, DialogContent, DialogActions, Checkbox, Link } from '@mui/material';
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -8,6 +8,7 @@ export default function Registration() {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
   const [openNotEligible, setOpenNotEligible] = useState(false);
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^\+?[0-9\- ]{7,20}$/;
@@ -68,8 +69,9 @@ export default function Registration() {
     Object.keys(form).forEach(key => {
       nextErrors[key] = validateField(key, form[key]);
     });
+    nextErrors.acceptTerms = !acceptTerms ? 'You must accept the terms and conditions.' : '';
     setErrors(nextErrors);
-    setTouched({ name: true, phone: true, email: true, dob: true, country: true, cryptoLegal: true });
+    setTouched({ name: true, phone: true, email: true, dob: true, country: true, cryptoLegal: true, acceptTerms: true });
 
     const hasError = Object.values(nextErrors).some(Boolean);
     if (hasError) return;
@@ -92,8 +94,7 @@ export default function Registration() {
             Crynance Lottery
           </Typography>
           <Typography variant="body2" sx={{ opacity: 0.85 }}>
-            Enter for a chance to win the grand prize of <strong>10 BTC</strong> in our lottery. This is a
-            mobile-first experience — no backend. For now, every entry receives a prize (Notebook).
+            Enter for a chance to win the grand prize of <strong>10 BTC</strong> in our lottery.
           </Typography>
         </Paper>
         <Dialog open={openNotEligible} onClose={() => setOpenNotEligible(false)}>
@@ -187,6 +188,27 @@ export default function Registration() {
               </RadioGroup>
               {!!errors.cryptoLegal && <FormHelperText>{errors.cryptoLegal}</FormHelperText>}
             </FormControl>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                  required
+                />
+              }
+              label={
+                <Typography variant="body2">
+                  I agree to the{' '}
+                  <Link href="/terms" target="_blank" rel="noopener">
+                    Terms and Conditions
+                  </Link>
+                </Typography>
+              }
+              sx={{ mt: 1 }}
+            />
+            {!!errors.acceptTerms && <FormHelperText error>{errors.acceptTerms}</FormHelperText>}
+
             <Box sx={{ mt: 2 }}>
               <Button type="submit" variant="contained" fullWidth size="large">
                 Register

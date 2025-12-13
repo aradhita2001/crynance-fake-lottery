@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { CssBaseline, AppBar, Toolbar, Typography, Container } from '@mui/material';
 import Registration from './pages/Registration';
 import Scratch from './pages/Scratch';
+import Terms from './pages/Terms';
 import './App.css';
 import Logo from './assets/logo.svg';
 
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Registration />} />
           <Route path="/scratch" element={<Scratch />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </Container>
     </>
